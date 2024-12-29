@@ -34,3 +34,15 @@ security check
 ```bash
 cargo audit
 ```
+
+find unused deps
+
+```bash
+cargo +nightly udeps
+```
+
+logs in tests
+
+```bash
+TEST_LOG=true cargo test health_check_works | bunyan
+```

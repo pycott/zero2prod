@@ -1,8 +1,11 @@
-check:
-	cargo test
-	cargo clippy -- -D warnings
+pre-commit:
 	cargo fmt
-	cargo tarpaulin --verbose --workspace
+	cargo clippy -- -D warnings
+	cargo +nightly udeps
+	cargo tarpaulin --ignore-tests
+	cargo sqlx prepare --workspace -- --all-targets
+	cargo test
+	cargo audit
 
 watch:
 	cargo watch -x check -x test -x run
